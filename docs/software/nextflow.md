@@ -4,7 +4,7 @@
 
 # Nextflow
 
-Nextflow is a workflow manager for scientific computing. Further details can be found at:
+Nextflow is a workflow manager for scientific computing. Details can be found at:
 
 [Nextflow.io](https://www.nextflow.io)
 
@@ -25,7 +25,8 @@ First, install a Conda environment in your data directory:
 setup-miniconda-env /cluster/<group_name>/<your_directory>/nextflow-env
 ```
 
-Read and agree to the licence terms to proceed. Wait for installation to complete.
+Read and agree to the licence terms to proceed (press ENTER, the 'q' key once you have finished reading, then type "yes" and press ENTER to agree).
+Wait for installation to complete.
 
 Load the newly installed conda environment:
 

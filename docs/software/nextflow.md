@@ -1,7 +1,3 @@
-!!! warning
-
-    This section is under construction. Cluster use of Nextflow is still being tested and documented
-
 # Nextflow
 
 Nextflow is a workflow manager for scientific computing. Details can be found at:
@@ -51,10 +47,38 @@ conda install -c bioconda nextflow
 Create a `nextflow.config` configuration file:
 
 ```console
-echo "process { executor='sge' }" > nextflow.config
+cat > nextflow.config<< EOF
+params {
+  config_profile_description = 'University of Dundee Compute Cluster'
+  config_profile_contact = 'Infrastructure and Research Computing Team'
+  config_profile_url = 'https://uod-hpc.readthedocs.io/en/latest/software/nextflow/'
+}
+
+process {
+  executor = 'sge'
+  penv = 'smp'
+  queue = 'all.q'
+
+  // Workaround for bug:
+  // https://github.com/nextflow-io/nextflow/issues/2449
+  withName: '.*' { memory = null }
+  withName: '.*' { time = null }
+}
+
+executor {
+  max_memory = 128.GB
+  max_cpus = 28
+  max_time = 72.h
+}
+EOF
 ```
 
-This instructs Nextflow as to which scheduler to use when running jobs on the cluster. Further details are available [in the Nextflow documentation here](https://www.nextflow.io/docs/latest/executor.html#sge).
+This instructs Nextflow as to the scheduler and job parameters to use for the cluster. Further details are available [in the Nextflow documentation](https://www.nextflow.io/docs/latest/executor.html#sge).
+
+!!! note
+
+    Manual creation of a configuration file will be replaced with use of "-profile" at run time.
+    We are currently working to include the University of Dundee cluster in [the central nf-core configuration repository](https://github.com/nf-core/configs/)
 
 Perform a test run to confirm installation was successful:
 
@@ -92,6 +116,6 @@ Run your Nextflow command as desired, for example:
 nextflow run nf-core/sarek -r 3.1.1 --input ./samplesheet.csv --outdir ./results ...<further parameters as required>...
 ```
 
-Pipelines require no explicit installation. When using one for the first time, it will be automatically downloaded for the user. Further details are available [in the nf-core documentation here](https://nf-co.re/docs/usage/installation#pipeline-code).
+Pipelines require no explicit installation. When using one for the first time, it will be automatically downloaded for the user. Further details are available in [the nf-core documentation](https://nf-co.re/docs/usage/installation#pipeline-code).
 
 For scientific reproducibility, it is recommended that option `-r <revision_name>` be provided to specify the version of the pipeline whenever a command is run. Additional discussion is available in the [reproducibility section of the documentation for the sarek pipeline](https://nf-co.re/sarek/3.3.2/docs/usage#reproducibility), although the `-r` option can be used with other pipelines.

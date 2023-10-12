@@ -24,7 +24,7 @@ setup-miniconda-env /cluster/<group_name>/<your_directory>/nextflow-env
 Read and agree to the licence terms to proceed (press ENTER, the 'q' key once you have finished reading, then type "yes" and press ENTER to agree).
 Wait for installation to complete.
 
-Load the newly installed conda environment:
+Activate the newly installed conda environment:
 
 ```console
 source "/cluster/<group_name>/<your_directory>/nextflow-env/bin/activate"
@@ -36,6 +36,7 @@ Set up Conda to use [Bioconda](https://bioconda.github.io/):
 conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Install [the Nextflow Conda package](https://anaconda.org/bioconda/nextflow):
@@ -59,7 +60,7 @@ process {
   penv = 'smp'
   queue = 'all.q'
 
-  // Workaround for bug:
+  // Workaround for:
   // https://github.com/nextflow-io/nextflow/issues/2449
   withName: '.*' { memory = null }
   withName: '.*' { time = null }
@@ -97,6 +98,12 @@ Hola world!
 Ciao world!
 ```
 
+Append the activation command to your `.bashrc` file to avoid having to source your conda environment on each log-in:
+
+```console
+echo source '"/cluster/<group_name>/<your_directory>/nextflow-env/bin/activate"' >> ~/.bashrc
+```
+
 For additional guidance on installing Nextflow, official documentation is available in:
 
 * [Nextflow installation instructions](https://www.nextflow.io/docs/latest/getstarted.html#installation)
@@ -104,18 +111,12 @@ For additional guidance on installing Nextflow, official documentation is availa
 
 ## Usage
 
-On each log-in, load your conda environment:
-
-```console
-source "/cluster/<group_name>/<your_directory>/nextflow-env/bin/activate"
-```
-
 Run your Nextflow command as desired, for example:
 
 ```console
 nextflow run nf-core/sarek -r 3.1.1 --input ./samplesheet.csv --outdir ./results ...<further parameters as required>...
 ```
 
-Pipelines require no explicit installation. When using one for the first time, it will be automatically downloaded for the user. Further details are available in [the nf-core documentation](https://nf-co.re/docs/usage/installation#pipeline-code).
+Pipelines require no explicit installation. When using one for the first time, it will be automatically downloaded. Further details are available in [the nf-core documentation](https://nf-co.re/docs/usage/installation#pipeline-code).
 
-For scientific reproducibility, it is recommended that option `-r <revision_name>` be provided to specify the version of the pipeline whenever a command is run. Additional discussion is available in the [reproducibility section of the documentation for the sarek pipeline](https://nf-co.re/sarek/3.3.2/docs/usage#reproducibility), although the `-r` option can be used with other pipelines.
+For scientific reproducibility, it is recommended that option `-r <revision_name>` be provided to specify the version of the pipeline whenever a command is run. Additional discussion is available in the [reproducibility section of the documentation for the sarek pipeline](https://nf-co.re/sarek/3.3.2/docs/usage#reproducibility). Note that the `-r` option is not specific to sarek and can be used with other pipelines.

@@ -90,7 +90,7 @@ Hola world!
 Bonjour world!
 ```
 
-For convenience, append the `export NXF_SINGULARITY_CACHEDIR` and conda activation commands to your `.bashrc` file to avoid having to run both on each log-in:
+For convenience, append the `export NXF_SINGULARITY_CACHEDIR` and conda activation commands to your `.bashrc` file to avoid having to run both on each log-in or include both in every job script:
 
 ```console
 echo export NXF_SINGULARITY_CACHEDIR='"/cluster/<group_name>/<your_directory>/nxf-singularity-cache"' >> ~/.bashrc

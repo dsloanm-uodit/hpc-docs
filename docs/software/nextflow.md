@@ -33,42 +33,10 @@ source "/cluster/<group_name>/<your_directory>/nextflow-env/bin/activate"
 conda install -y -c bioconda nextflow
 ```
 
-Set environment variable `NXF_SINGULARITY_CACHEDIR` to a path in your data directory:
+Set environment variable `NXF_SINGULARITY_CACHEDIR` to a path in your data directory. This instructs Nextflow to store Singularity images in the given directory rather than re-download them for every run:
 
 ```console
 export NXF_SINGULARITY_CACHEDIR="/cluster/<group_name>/<your_directory>/nxf-singularity-cache"
-```
-
-This instructs Nextflow to store Singularity images in the given directory rather than re-download them for every run.
-
-As a workaround for [a Nextflow Bug](https://github.com/nextflow-io/nextflow/issues/2449), use `nano`, or the text editor of your choice, to create a file named `qsub` in your conda environment's `bin` directory:
-
-```console
-nano /cluster/<group_name>/<your_directory>/nextflow-env/bin/qsub
-```
-
-Copy and paste the following contents into the file:
-
-```bash
-#!/bin/bash
-# Wrapper for qsub. Deletes invalid job scheduler directives h_rt and h_rss
-# from Nextflow-generated job scripts. Workaround for bug:
-# https://github.com/nextflow-io/nextflow/issues/2449
-for arg in "$@"; do
-  if [ "$arg" = ".command.run" ]; then
-    sed -i '/^#$ -l h_rt=\|^#$ -l h_rss=/d' .command.run
-    break
-  fi
-done
-
-# Submit job using actual qsub
-/opt/sge/bin/lx-amd64/qsub "$@"
-```
-
-then mark it as executable:
-
-```console
-chmod +x /cluster/<group_name>/<your_directory>/nextflow-env/bin/qsub
 ```
 
 Perform a test run to confirm installation was successful:
@@ -115,6 +83,10 @@ nano myjobscript.sh
 with contents:
 
 ```bash
+# NOTE: The following two lines should be omitted if they are already appended to your .bashrc
+export NXF_SINGULARITY_CACHEDIR="/cluster/<group_name>/<your_directory>/nxf-singularity-cache"
+source "/cluster/<group_name>/<your_directory>/nextflow-env/bin/activate"
+
 nextflow run nf-core/sarek -profile uod_hpc -r 3.1.1 --input ./samplesheet.csv --outdir ./results ...<further parameters as required>...
 ```
 
@@ -130,9 +102,3 @@ Pipelines require no explicit installation. When using one for the first time, i
 
 For scientific reproducibility, it is recommended that option `-r <revision_name>` be provided to specify the version of the pipeline whenever a command is run. Additional discussion is available in the [reproducibility section of the documentation for the sarek pipeline](https://nf-co.re/sarek/3.3.2/docs/usage#reproducibility). Note that the `-r` option is not specific to sarek and can be used with other pipelines.
 
-## Troubleshooting
-
-Common errors and suggested fixes are below:
-
-* `Unable to run job: Access specifier of element "m_mem_free" of attribute "l_hard" in "short.default" does not allow removal of attribute but element was removed.`<br>
-Suggested fix: ensure the `qsub` file has been created in your conda environment's `bin` directory and it has been marked executable with `chmod +x`, as detailed in the [Installation](#installation) section.

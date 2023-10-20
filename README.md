@@ -14,8 +14,8 @@ then run:
 
 `mkdocs serve`
 
-from the root directory. Navigate to http://127.0.0.1:8000/ in your browser to view the docs.
+from the repository directory. Navigate to http://127.0.0.1:8000/ in your browser to view the docs.
 
 The browser page will automatically update as you make changes to the documentation files.
 
-Once your changes are complete and your fork updated, open [a pull request](ttps://help.github.com/articles/using-pull-requests) to have your changes incorporated.
+Once your changes are complete and your fork updated, [open a pull request](https://help.github.com/articles/using-pull-requests) to have your changes incorporated.

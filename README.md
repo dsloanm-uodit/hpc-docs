@@ -1,6 +1,8 @@
 # University of Dundee HPC Cluster Documentation
 
-This repository contains the user documentation for the University of Dundee's HPC cluster service.
+This repository contains the user documentation for the University of Dundee's HPC cluster service. A rendered version is available at:
+
+https://uod-hpc.readthedocs.io
 
 ## How to Contribute
 

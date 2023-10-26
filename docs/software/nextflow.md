@@ -93,7 +93,7 @@ nextflow run nf-core/sarek -profile uod_hpc -r 3.1.1 --input ./samplesheet.csv -
 Submit the script using `qsub`:
 
 ```console
-qsub myjobscript.sh
+qsub -cwd myjobscript.sh
 ```
 
 Standard and error output for the job will be produced in `.o` and `.e` files, such as `myjobscript.sh.o1400340` and `myjobscript.sh.e1400340`, as it runs.

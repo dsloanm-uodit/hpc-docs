@@ -87,7 +87,7 @@ with contents:
 export NXF_SINGULARITY_CACHEDIR="/cluster/<group_name>/<your_directory>/nxf-singularity-cache"
 source "/cluster/<group_name>/<your_directory>/nextflow-env/bin/activate"
 
-nextflow run nf-core/sarek -profile uod_hpc -r 3.1.1 --input ./samplesheet.csv --outdir ./results ...<further parameters as required>...
+nextflow run nf-core/sarek -profile uod_hpc -r 3.3.2 --input ./samplesheet.csv --outdir ./results ...<further parameters as required>...
 ```
 
 Submit the script using `qsub`:

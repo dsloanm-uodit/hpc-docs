@@ -16,7 +16,7 @@ requesting access to the cluster and providing the following details:
   * The name and contact details of your group leader
   * Project Name
   * Project ID
-  * The path to your group's fileset on the cluster, e.g. `/cluster/mygroupfileset` (see below if a new group fileset is required)
+  * The path to your group's fileset on the cluster, e.g. `/cluster/mygroupfileset` or `/actives/path/to/fileset` (see below if a new group fileset is required)
 
 Once your ticket is processed, your account will be granted the appropriate access to the cluster.
 

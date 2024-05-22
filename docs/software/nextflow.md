@@ -8,7 +8,7 @@ Community pipelines for use with Nextflow are available at:
 
 [nf-co.re](https://nf-co.re)
 
-A configuration profile for the University of Dundee cluster is maintained in [the central nf-core repository](https://github.com/nf-core/configs/blob/master/docs/uod_hpc.md). To make use of the profile, Nextflow should always be run with argument `-profile uod_hpc`.
+A configuration profile for the University of Dundee cluster is maintained in [the central nf-core repository](https://github.com/nf-core/configs/blob/master/docs/uod_hpc.md). To make use of the profile in nf-core pipelines, Nextflow should always be run with argument `-profile uod_hpc`.
 
 ## Installation
 
@@ -74,7 +74,7 @@ For additional guidance on installing Nextflow, official documentation is availa
 
 ## Usage
 
-Create a job script containing your desired Nextflow command, always including `-profile uod_hpc` to ensure the correct cluster configuration is applied. For example:
+Create a job script containing your desired Nextflow command, always including `-profile uod_hpc` when running an nf-core pipeline to ensure the correct cluster configuration is applied. For example:
 
 ```console
 nano myjobscript.sh
@@ -101,4 +101,3 @@ Standard and error output for the job will be produced in `.o` and `.e` files, s
 Pipelines require no explicit installation. When using one for the first time, it will be automatically downloaded as detailed in the [the nf-core documentation](https://nf-co.re/docs/usage/installation#pipeline-code).
 
 For scientific reproducibility, it is recommended that option `-r <revision_name>` be provided to specify the version of the pipeline whenever a command is run. Additional discussion is available in the [reproducibility section of the documentation for the sarek pipeline](https://nf-co.re/sarek/3.3.2/docs/usage#reproducibility). Note that the `-r` option is not specific to sarek and can be used with other pipelines.
-

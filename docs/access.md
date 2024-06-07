@@ -44,3 +44,10 @@ ssh <dundee-username>@login.compute.dundee.ac.uk
 ```
 
 then enter your password when prompted.
+
+## Usage
+
+Useful sources of info for getting started:
+
+  * [The DAG HPC Workshop slide set](https://dag.compbio.dundee.ac.uk/workshops/HPC_Apr2021.pptx)
+  * [The UoD Compute Cluster Teams channel](https://teams.microsoft.com/l/team/19%3a63a2d1d10e5346c79d8b35dec6006a40%40thread.tacv2/conversations?groupId=4153042c-375d-4caa-a654-d691f65da8bb&tenantId=ae323139-093a-4d2a-81a6-5d334bcd9019)

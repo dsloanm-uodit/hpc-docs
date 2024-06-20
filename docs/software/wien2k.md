@@ -33,7 +33,7 @@ cd /cluster/<group_name>/<your_directory>
 mkdir wien2k-install
 mv WIEN2k_23.2.tar wien2k-install
 cd wien2k-install
-untar WIEN2k_23.2.tar
+tar xf WIEN2k_23.2.tar
 
 # Uncompress the files and run the enclosed script to expand the archives
 gunzip *.gz

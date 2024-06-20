@@ -83,7 +83,7 @@ Continue and follow prompts:
 | Prompt                                                                                                     | Response                                                                 |
 | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | `Compiler and linker options`                                                                              | `R`                                                                      |
-| `Real libraries=`                                                                                          | `/cluster/path/to/data/dir/wien2k-env/libopenblas.so -lpthread`          |
+| `Real libraries=`                                                                                          | `/cluster/path/to/data/dir/wien2k-env/lib/libopenblas.so -lpthread`      |
 | After being returned to `Compiler and linker options`                                                      | `S`                                                                      |
 | `Shared Memory Architecture?`            | `y`                                                             | `y`                                                                      |
 | `Do you know/need a command to bind your jobs to specific nodes?`                                          | `N`                                                                      |

@@ -19,10 +19,12 @@ setup-miniconda-env /cluster/<group_name>/<your_directory>/wien2k-env
 Read and agree to the licence terms to proceed (press ENTER, the 'q' key once you have finished reading, then type "yes" and press ENTER to agree).
 Wait for installation to complete.
 
-Activate the newly installed conda environment and install prerequisite compilers and libraries:
+Activate the newly installed conda environment, update and install prerequisite compilers and libraries:
 
 ```console
 source "/cluster/<group_name>/<your_directory>/wien2k-env/bin/activate"
+conda update -n base -c defaults conda
+conda config --add channels conda-forge
 conda install gcc gfortran numpy openmpi openblas fftw gnuplot octave ghostscript lapack
 ```
 

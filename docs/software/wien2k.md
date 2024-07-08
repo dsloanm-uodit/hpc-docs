@@ -98,3 +98,45 @@ Continue and follow prompts:
 For additional guidance on installing and running Wien2k, official documentation is available at:
 
 * [Wien2k User's Guide](http://www.wien2k.at/reg_user/textbooks/usersguide.pdf)
+
+## Usage
+
+Create a job script containing your desired Wien2k command(s):
+
+```console
+nano myjobscript.sh
+```
+
+with contents:
+
+```bash
+# Job Name
+#$ -N Wien2k-Job
+
+# Number of job slots/cores
+#$ -pe smp 16
+
+# Job class:
+# * short (default) - max runtime of 12 hours
+# * long - max runtime of 72 hours
+# * 4weeks - max runtime of 4weeks
+#$ -jc short
+
+# Change to working directory before running script
+# i.e. the directory this script is `qsub`-ed from
+#$ -cwd
+
+# Activate your Wien2k Conda environment
+source "/cluster/<group_name>/<your_directory>/wien2k-env/bin/activate"
+
+# Wien2k command(s)
+run_lapw <parameters as required>
+```
+
+Submit the script using `qsub`:
+
+```console
+qsub myjobscript.sh
+```
+
+Standard and error output for the job will be produced in `.o` and `.e` files.

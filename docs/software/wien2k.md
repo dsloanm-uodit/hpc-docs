@@ -6,7 +6,7 @@
 
 Details of Wien2k can be found at the project page:
 
-[Wien2k.at](ttp://www.wien2k.at/)
+[Wien2k.at](http://www.wien2k.at/)
 
 ## Installation
 

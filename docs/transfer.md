@@ -1,6 +1,6 @@
 # Data Transfer
 
-The recommended method for transferring data to the cluster storage is via Windows Shares/Samba. For performance reasons, scp or sftp to the login nodes is not supported.
+The recommended method for transferring data to the cluster storage is via Windows Shares/SMB. For performance reasons, scp or sftp to the login nodes is not supported.
 
 ## Windows
 

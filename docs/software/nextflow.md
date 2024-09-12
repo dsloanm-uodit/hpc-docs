@@ -83,17 +83,27 @@ nano myjobscript.sh
 with contents:
 
 ```bash
+#$ -cwd
+#$ -N NextflowJob
+
 # NOTE: The following two lines should be omitted if they are already appended to your .bashrc
 export NXF_SINGULARITY_CACHEDIR="/cluster/<group_name>/<your_directory>/nxf-singularity-cache"
 source "/cluster/<group_name>/<your_directory>/nextflow-env/bin/activate"
 
-nextflow run nf-core/sarek -profile uod_hpc -r 3.3.2 --input ./samplesheet.csv --outdir ./results ...<further parameters as required>...
+# Copy input files to $TMPDIR. This is a temporary directory located on the node-local,
+# high-speed SSD drives and will improve I/O throughput.
+cp /path/to/input/files/* $TMPDIR/
+# Change to $TMPDIR
+cd $TMPDIR
+
+# Set working directory with `-w /tmp/work` to use high-speed SSDs for intermediate files.
+nextflow run nf-core/sarek -profile uod_hpc -r 3.3.2 -w /tmp/work --input ./samplesheet.csv --outdir /path/to/results ...<further parameters as required>...
 ```
 
 Submit the script using `qsub`:
 
 ```console
-qsub -cwd myjobscript.sh
+qsub myjobscript.sh
 ```
 
 Standard and error output for the job will be produced in `.o` and `.e` files, such as `myjobscript.sh.o1400340` and `myjobscript.sh.e1400340`, as it runs.

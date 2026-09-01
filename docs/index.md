@@ -1,3 +1,5 @@
-# Introduction
+# Content Relocated
 
-This is documentation for the University of Dundee High Performance Computing (HPC) cluster. See the [Accessing the Cluster](access) section for details on signing up and connecting.
+Information previously contained within these pages has been 
+relocated [here](https://hpcdocs.dundee.ac.uk/docs/), and is
+accessible only from the university network or VPN.
